@@ -11,7 +11,7 @@ RUN MONO_VERSION=5.8.0.127 && \
     apt-get update && apt-get --no-install-recommends install -y gnupg dirmngr && \
     apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF && \
     echo "deb https://download.mono-project.com/repo/debian stretch/snapshots/$MONO_VERSION main" | tee /etc/apt/sources.list.d/mono-official-stable.list && \
-    apt-get install -y apt-transport-https && \
+    apt-get install -y wget apt-transport-https && \
     apt-get update -y && \
     apt-get --no-install-recommends install -y pkg-config make nuget mono-devel msbuild ca-certificates-mono && \
     rm -rf /var/lib/apt/lists/* && \
@@ -29,8 +29,7 @@ RUN MONO_VERSION=5.8.0.127 && \
     echo apt-get clean
     
 #Install net core 2.1 sdk    
-RUN apt-get install wget -y && \
-    wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.asc.gpg && \
+RUN wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.asc.gpg && \
     mv microsoft.asc.gpg /etc/apt/trusted.gpg.d/ && \
     wget -q https://packages.microsoft.com/config/debian/9/prod.list && \
     mv prod.list /etc/apt/sources.list.d/microsoft-prod.list && \
