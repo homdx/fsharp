@@ -40,6 +40,7 @@ RUN apt-get update \
         libssl1.0.2 \
         libstdc++6 \
         zlib1g \
+        curl \
     && rm -rf /var/lib/apt/lists/*
 
 # Install .NET Core SDK
