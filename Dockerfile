@@ -29,7 +29,8 @@ RUN MONO_VERSION=5.8.0.127 && \
     echo apt-get clean
     
 #Install net core 2.1 sdk    
-RUN wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.asc.gpg && \
+RUN apt-get install wget -y && \
+    wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.asc.gpg && \
     mv microsoft.asc.gpg /etc/apt/trusted.gpg.d/ && \
     wget -q https://packages.microsoft.com/config/debian/9/prod.list && \
     mv prod.list /etc/apt/sources.list.d/microsoft-prod.list && \
