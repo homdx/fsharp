@@ -40,7 +40,8 @@ RUN apt-get update \
         libssl1.0.2 \
         libstdc++6 \
         zlib1g \
-    && rm -rf /var/lib/apt/lists/*
+        curl \
+    && echo rm -rf /var/lib/apt/lists/*
 
 # Install .NET Core SDK
 ENV DOTNET_SDK_VERSION 2.1.401
